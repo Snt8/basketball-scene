@@ -29,7 +29,7 @@ AFRAME.registerComponent('basketball-play', {
             this.crossSecuence()
         })
 
-        this.attacker.addEventListener('animation__cross__complete', () => {
+        this.ball.addEventListener('animationcomplete__cross__complete', () => {
             this.secondDriblingSecuence()
         })
     },
@@ -43,13 +43,13 @@ AFRAME.registerComponent('basketball-play', {
         this.rightLeg.removeAttribute('animation__right__walk')
         
         this.rightArm.setAttribute('animation__dribling', {
-                property: 'rotation', 
-                from: '2.5 -5 15',
-                to: '0 15 -25',
-                dur: 600,
-                loop: true,
-                dir: 'alternate'
-            })
+            property: 'rotation', 
+            from: '2.5 -5 15',
+            to: '0 15 -25',
+            dur: 600,
+            loop: true,
+            dir: 'alternate'
+        })
 
         this.ball.setAttribute('animation__ball', {
             property: 'position',
@@ -61,32 +61,32 @@ AFRAME.registerComponent('basketball-play', {
 
         if(!this.attackerIsMovement){
             //Check if the player isn't moving
-                this.leftArm.setAttribute('animation__dribling', {
-                    property: 'position', 
-                    to: '0.1 0.15 0', 
-                    dur: 800, 
-                    dir: 'alternate',
-                    loop: true, 
-                    easing: 'easeInOutQuad'
-                })
+            this.leftArm.setAttribute('animation__dribling', {
+                property: 'position', 
+                to: '0.1 0.15 0', 
+                dur: 800, 
+                dir: 'alternate',
+                loop: true, 
+                easing: 'easeInOutQuad'
+            })
 
-                this.rightLeg.setAttribute('animation__static__right__leg', {
-                    property: 'position', 
-                    to: '0 0.05 0', 
-                    dur: 1000, 
-                    dir: 'alternate',
-                    loop: true, 
-                    easing: 'easeInOutQuad'
-                })
+            this.rightLeg.setAttribute('animation__static__right__leg', {
+                property: 'position', 
+                to: '0 0.05 0', 
+                dur: 1000, 
+                dir: 'alternate',
+                loop: true, 
+                easing: 'easeInOutQuad'
+            })
 
-                this.leftLeg.setAttribute('animation__static__left__leg', {
-                    property: 'position', 
-                    to: '0 0.05 0', 
-                    dur: 1000, 
-                    dir: 'alternate', 
-                    loop: true, 
-                    easing: 'easeInOutQuad'
-                })
+            this.leftLeg.setAttribute('animation__static__left__leg', {
+                property: 'position', 
+                to: '0 0.05 0', 
+                dur: 1000, 
+                dir: 'alternate', 
+                loop: true, 
+                easing: 'easeInOutQuad'
+            })
         }
     },
 
@@ -99,41 +99,41 @@ AFRAME.registerComponent('basketball-play', {
         this.rightLeg.removeAttribute('animation__static__right__leg')
 
         if(this.attackerIsMovement){
-                //first movement
-                this.attacker.setAttribute('animation__movement', {
-                    property: 'position', 
-                    to: '-10 0 10', 
-                    dur: 5000, 
-                    easing: 'easeInOutQuad'
-                });
+            //first movement
+            this.attacker.setAttribute('animation__movement', {
+                property: 'position', 
+                to: '-10 0 10', 
+                dur: 5000, 
+                easing: 'easeInOutQuad'
+            });
 
-                this.leftArm.setAttribute('animation__dribling', {
-                        property: 'position', 
-                        from: '0 0 -0.2',
-                        to: '0 0 0.2', 
-                        dur: 800, 
-                        dir: 'alternate',
-                        loop: true, 
-                        easing: 'easeInOutQuad'
-                    })
+            this.leftArm.setAttribute('animation__dribling', {
+                property: 'position', 
+                from: '0 0 -0.2',
+                to: '0 0 0.2', 
+                dur: 800, 
+                dir: 'alternate',
+                loop: true, 
+                easing: 'easeInOutQuad'
+            })
 
-                this.leftLeg.setAttribute('animation__left__walk', {
-                    property: 'position',
-                    from: '0 0 -0.15',
-                    to: '0 0 0.15', 
-                    dur: 500,
-                    dir: 'alternate', 
-                    loop: true
-                });
+            this.leftLeg.setAttribute('animation__left__walk', {
+                property: 'position',
+                from: '0 0 -0.15',
+                to: '0 0 0.15', 
+                dur: 500,
+                dir: 'alternate', 
+                loop: true
+            });
 
-                this.rightLeg.setAttribute('animation__right__walk', {
-                    property: 'position', 
-                    from: '0 0 0.15',
-                    to: '0 0 -0.15', 
-                    dur: 500,
-                    dir: 'alternate', 
-                    loop: true
-                });
+            this.rightLeg.setAttribute('animation__right__walk', {
+                property: 'position', 
+                from: '0 0 0.15',
+                to: '0 0 -0.15', 
+                dur: 500,
+                dir: 'alternate', 
+                loop: true
+            });
         }
     },
 
@@ -160,7 +160,6 @@ AFRAME.registerComponent('basketball-play', {
             from: '-0.8 1.1 -4.95141',  
             to: '0.5 0.69 -4.3',  
             dur: 1000,
-            delay: 1000,
             easing: 'easeInOutQuad'
         })
 
@@ -172,9 +171,72 @@ AFRAME.registerComponent('basketball-play', {
             delay: 1000,
             easing: 'easeInOutQuad'
         })
+    },
+
+
+    secondDriblingSecuence : function(){
+        //remove last animations
+        this.leftArm.removeAttribute('rotation')
+        this.rightArm.removeAttribute('rotation')
+        this.leftArm.removeAttribute('position')
+        this.rightArm.removeAttribute('position')
+
+        
+        //Left hand drible
+        this.leftArm.setAttribute('animation__dribling', {
+            property: 'rotation', 
+            from: '-2.5 5 -15',
+            to: '0 -15 25',
+            dir: 'alternate', 
+            dur: 400,
+            loop: true,
+            easing: 'easeInOutQuad'
+        })
+
+        //attacker movement to the basket
+        this.attacker.setAttribute('animation__entry__area', {
+            property: 'position', 
+            from: '-10 0 10',
+            to: '-7.5 0 7.5',
+            dur: 5000, 
+            delay: 1000
+        })
+
+        this.attacker.setAttribute('animation__go__basket', {
+            property: 'position', 
+            from: '-7.5 0 7.5',
+            to: '-7.5 0 15', 
+            dur: 2500, 
+        })
+
+        //ball's drible
+        this.ball.setAttribute('animation__drible', {
+            property: 'position', 
+            from: '1.2 1.4 -4.95141', 
+            to: '1.2 0.5 -4.95141',
+            dir: 'alternate',
+            loop: true
+
+        })
+
+        //Legs movement to walk
+        this.leftLeg.setAttribute('animation__left__walk', {
+                property: 'position',
+                from: '0 0 -0.15',
+                to: '0 0 0.15', 
+                dur: 500,
+                dir: 'alternate', 
+                loop: true
+        })
+
+        this.rightLeg.setAttribute('animation__right__walk', {
+                property: 'position', 
+                from: '0 0 0.15',
+                to: '0 0 -0.15', 
+                dur: 500,
+                dir: 'alternate', 
+                loop: true
+        })
     }
-
-
-
 
 })
