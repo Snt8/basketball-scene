@@ -4,29 +4,28 @@
         <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     </head>
     <body>
-        <a-scene keyboard-shortcuts="" screenshot="" xr-mode-ui="" device-orientation-permission-ui="">
-
+        <a-scene basketball-play="" keyboard-shortcuts="" screenshot="" xr-mode-ui="" device-orientation-permission-ui="">
             <!--Player-->
-            <a-entity id="attacker">
+            <a-entity id="attacker" animation="">
                 <a-sphere position="0 2.82552 -5" radius="1.25" color="#EF2D5E" scale="0.29324 0.31295 0.30183" material="color: #f47192"></a-sphere>
                 <a-entity geometry="" scale="0.69423 1.1607 0.67422" position="0 1.86439 -4.98104" material="color: #b01c11"></a-entity>
                 <a-entity id="arms">
                     <a-entity id="left-arm-container">
-                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604" position="0.52187 1.57261 -4.94792" rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192" id="left-arm"></a-entity>
+                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604" position="0.54179 1.59916 -4.94792" rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192" id="left-arm"></a-entity>
                         <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="0.4166 2.03602 -4.95321" rotation="0 0 16.735524237976218" material="color: #b01c11" id="left-hand"></a-entity>
                     </a-entity>
-                    <a-entity id="righ-arm-container">
+                    <a-entity id="righ-arm-container" animation__dribling__rotation="dir: alternate; from: 2.5 -5 15; loop: true; property: rotation; to: 0 15 -25" animation__dribling="dir: alternate; dur: 500; easing: easeInOutQuad; loop: true; property: position; to: 0 0 0">
                         <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="-0.41678 2.03602 -4.95141" rotation="0 0 -16.735524237976218" material="color: #b01c11" id="righ-arm"></a-entity>
                         <a-entity geometry="primitive: cylinder" scale="0.14814 0.31569 0.1604" position="-0.54775 1.59503 -4.95141" rotation="0 0 -16.735524237976218" material="color: #f47192" id="right-hand"></a-entity>
                     </a-entity>
                 </a-entity>
 
                 <a-entity id="legs">
-                    <a-entity id="left-leg-container">
+                    <a-entity id="left-leg-container" animation="" animation__static__left__leg="">
                         <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="0.2033 0.91512 -4.95549" material="color: #1d5aaa" rotation="0 0 5.793176266567754" id="left-leg"></a-entity>
                         <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="0.23907 0.50003 -4.91935" material="color: #5d4b4b" id="left-foot"></a-entity>
                     </a-entity>
-                    <a-entity id="right-leg-container">
+                    <a-entity id="right-leg-container" animation="" animation__static__right__leg="">
                         <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="-0.16548 0.90416 -4.95549" material="color: #1d5aaa" rotation="0 0 -6.061320514688979" id="right-leg"></a-entity>
                         <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="-0.20162 0.49804 -4.91935" material="color: #5d4b4b" id="right-foot"></a-entity>
                     </a-entity>
@@ -82,5 +81,6 @@
             <a-plane rotation="-90 0 0" width="50" height="50" color="#7BC8A4"></a-plane>
             <a-sky color="#ECECEC" id="left-leg"></a-sky>
         </a-scene>
+        <script src="js/basketball-play.js"></script>
     </body>
 </html>
