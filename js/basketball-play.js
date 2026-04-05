@@ -259,78 +259,95 @@ AFRAME.registerComponent('basketball-play', {
     },
 
 
-    shotToBasket : function(){
-        this.leftArm.removeAttribute('animation__dribling')
-        this.rightArm.removeAttribute('animation__movement')
-        this.leftLeg.removeAttribute('animation__left__walk')
-        this.rightLeg.removeAttribute('animation__right__walk')
+    shotToBasket: function () {
 
-        //legs do two steps before the basket
-        this.rightLeg.setAttribute('animation__right__entry', {
-            property: 'position', 
-            from: '0 0 0.15',
-            to: '0 0 -0.15',
-            dur: 1000
-        })
+    //remove attributes and last listeners
+    this.leftArm.removeAttribute('animation__dribling')
+    this.rightArm.removeAttribute('animation__movement')
+    this.leftLeg.removeAttribute('animation__left__walk')
+    this.rightLeg.removeAttribute('animation__right__walk')
 
+    this.rightLeg.removeEventListener('animationcomplete__right__entry', this._onRightEntry)
+    this.ball.removeEventListener('animationcomplete__pre__shot', this._onPreShot)
+    this.ball.removeEventListener('animationcomplete__shot__finish', this._onShotFinish)
+
+    //legs do two steps before the basket
+    this.rightLeg.setAttribute('animation__right__entry', {
+        property: 'position',
+        from: '0 0 0.15',
+        to: '0 0 -0.15',
+        dur: 1000
+    })
+
+    this._onRightEntry = () => {
         this.leftLeg.setAttribute('animation__left__walk', {
             property: 'position',
             from: '0 0 -0.15',
-            to: '0 0 0.15', 
-            delay: 1000,
+            to: '0 0 0.15',
             dur: 1000,
-        })
-
-        this.rightLeg.addEventListener('animationcomplete__right__entry', () => {
-            this.ball.removeAttribute('animation__ball')
-            this.ball.removeAttribute('animation__drible')
-            this.ball.setAttribute('animation__pre-shot', {
-                property: 'position', 
-                from: '0.54 1.2 -5', 
-                to: '0.9 3.3 -4.9'
-            })
         })
 
         //prepare the arm to shot
         this.leftArm.setAttribute('animation__pre__shot', {
             property: 'position',
-            to: '2.65 2.715 0', 
-            dur: 1000, 
+            to: '2.65 2.715 0',
+            dur: 1000,
         })
 
         this.leftArm.setAttribute('animation__shot', {
             property: 'rotation',
-            to: '8.97 4.2 132.5', 
-            dur: 1000, 
+            to: '8.97 4.2 132.5',
+            dur: 1000,
         })
 
         //time to shot
-
         this.attacker.setAttribute('animation__jump', {
             property: 'position',
-            to: '-3 1.5 13', 
+            to: '-3 1.5 13',
             dur: 1000,
             easing: 'easeInOutQuad'
         })
 
-        this.ball.addEventListener('animationcomplete__pre__shot', () => {
-
-            this.ball.setAttribute('animation__shot', {
-                property: 'position', 
-                to: '2.9 7.1 -3.1', 
-                dur: 1000, 
-            })
-            
-            this.ball.setAttribute('animation__shot__finish', {
-                property: 'position', 
-                to: '2.9 7.1 -3.1', 
-                delay: 1000, 
-                dur: 1000
-                
-            })
-            
+        this.ball.removeAttribute('animation__ball')
+        this.ball.removeAttribute('animation__drible')
+        this.ball.setAttribute('animation__pre-shot', {
+            property: 'position',
+            from: '0.54 1.2 -5',
+            to: '0.9 3.3 -4.9',
+            dur: 1000
         })
-
     }
 
+    this._onPreShot = () => {
+        this.ball.setAttribute('animation__shot', {
+            property: 'position',
+            to: '2.9 7.1 -3.1',
+            dur: 1000,
+        })
+    }
+
+    //finish the jump
+    this._onShotFinish = () => {
+        this.ball.setAttribute('animation__shot__finish', {
+            property: 'position',
+            to: '2.9 0.5 -3.1',
+            dur: 1000
+        })
+
+        this.attacker.setAttribute('animation__back__floor', {
+            property: 'position',
+            from: '-3 1.5 13',
+            to: '-3 0 13.3',
+            dur: 500
+        })
+    }
+
+    this.rightLeg.addEventListener('animationcomplete__right__entry', this._onRightEntry, { once: true })
+    this.ball.addEventListener('animationcomplete__pre-shot', this._onPreShot, { once: true })
+    this.ball.addEventListener('animationcomplete__shot', this._onShotFinish, { once: true })
+}
+
 })
+//Just to say
+//that my code has
+//350 lines
