@@ -326,7 +326,7 @@ AFRAME.registerComponent('basketball-play', {
         })
     }
 
-    //finish the jump
+    //finish the     jump
     this._onShotFinish = () => {
         this.ball.setAttribute('animation__shot__finish', {
             property: 'position',

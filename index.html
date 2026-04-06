@@ -1,101 +1,179 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
-    </head>
-    <body>
-        <a-scene basketball-play="" keyboard-shortcuts="" screenshot="" xr-mode-ui="" device-orientation-permission-ui="">
-            <a-assets>
-                <img id="mi-cielo" src="assets/img_sky.jpg">
-            </a-assets>
-                        <!--Player-->
-            <a-entity id="attacker" animation="" animation__movement="dur: 5000; easing: easeInOutQuad; property: position; to: -10 0 10">
-                <a-sphere position="0 2.82552 -5" radius="1.25" color="#EF2D5E" scale="0.29324 0.31295 0.30183" material="color: #f47192"></a-sphere>
-                <a-entity geometry="" scale="0.69423 1.1607 0.67422" position="0 1.86439 -4.98104" material="color: #b01c11"></a-entity>
-                <a-entity id="arms">
-                    <a-entity id="left-arm-container" animation__dribling="dir: alternate; dur: 800; easing: easeInOutQuad; from: 0 -0.08 -0.2; loop: true; property: position; to: 0 0.08 0.2">
-                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604" position="0.54179 1.59916 -4.94792" rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192" id="left-arm"></a-entity>
-                        <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="0.4166 2.03602 -4.95321" rotation="0 0 16.735524237976218" material="color: #b01c11" id="left-hand"></a-entity>
-                    </a-entity>
-                    <a-entity id="righ-arm-container" animation__dribling__rotation="dir: alternate; from: 2.5 -5 15; loop: true; property: rotation; to: 0 15 -25" animation__dribling="dir: alternate; dur: 600; from: 2.5 -5 15; loop: true; property: rotation; to: 0 15 -25">
-                        <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="-0.41678 2.03602 -4.95141" rotation="0 0 -16.735524237976218" material="color: #b01c11" id="righ-arm"></a-entity>
-                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.31569 0.1604" position="-0.54775 1.59503 -4.95141" rotation="0 0 -16.735524237976218" material="color: #f47192" id="right-hand"></a-entity>
-                        <a-entity id="ball" geometry="primitive: sphere" material="color: #dd932c" position="-1 0.9666720856341566 -4.95141" scale="0.37546 0.38678 0.36752" animation__ball="dir: alternate; from: -1.0 1.1 -4.95141; loop: true; property: position; to: -1.0 0.5 -4.95141"></a-entity>
-                    </a-entity>
+
+<head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene basketball-play="" keyboard-shortcuts="" screenshot="" xr-mode-ui="" device-orientation-permission-ui="">
+        <a-assets>
+            <img id="mi-cielo" src="assets/img_sky.jpg">
+        </a-assets>
+
+        <a-assets>
+            <a-asset-item id="arbol" src="assets/tree_small_02_1k.gltf/tree_small_02_1k.gltf"></a-asset-item>
+        </a-assets>
+
+        <!--Player-->
+        <a-entity id="attacker" animation=""
+            animation__movement="dur: 5000; easing: easeInOutQuad; property: position; to: -10 0 10">
+            <a-sphere position="0 2.82552 -5" radius="1.25" color="#EF2D5E" scale="0.29324 0.31295 0.30183"
+                material="color: #f47192"></a-sphere>
+            <a-entity geometry="" scale="0.69423 1.1607 0.67422" position="0 1.86439 -4.98104"
+                material="color: #b01c11"></a-entity>
+            <a-entity id="arms">
+                <a-entity id="left-arm-container"
+                    animation__dribling="dir: alternate; dur: 800; easing: easeInOutQuad; from: 0 -0.08 -0.2; loop: true; property: position; to: 0 0.08 0.2">
+                    <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604"
+                        position="0.54179 1.59916 -4.94792"
+                        rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192"
+                        id="left-arm"></a-entity>
+                    <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604"
+                        position="0.4166 2.03602 -4.95321" rotation="0 0 16.735524237976218" material="color: #b01c11"
+                        id="left-hand"></a-entity>
                 </a-entity>
-
-                <a-entity id="legs">
-                    <a-entity id="left-leg-container" animation="" animation__left__walk="dir: alternate; dur: 500; from: 0 0 -0.15; loop: true; property: position; to: 0 0 0.15">
-                        <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="0.2033 0.91512 -4.95549" material="color: #1d5aaa" rotation="0 0 5.793176266567754" id="left-leg"></a-entity>
-                        <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="0.23907 0.50003 -4.91935" material="color: #5d4b4b" id="left-foot"></a-entity>
-                    </a-entity>
-                    <a-entity id="right-leg-container" animation="" animation__right__walk="dir: alternate; dur: 500; from: 0 0 0.15; loop: true; property: position; to: 0 0 -0.15">
-                        <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="-0.16548 0.90416 -4.95549" material="color: #1d5aaa" rotation="0 0 -6.061320514688979" id="right-leg"></a-entity>
-                        <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="-0.20162 0.49804 -4.91935" material="color: #5d4b4b" id="right-foot"></a-entity>
-                    </a-entity>
-                </a-entity>
-
-                <a-entity id="head">
-                    <a-entity material="" geometry="primitive: circle" position="-0.12191 2.87862 -4.62269" scale="0.04744 0.04808 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="-0.12209 2.87355 -4.60974" scale="0.0224 0.02187 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="-0.01273 2.68314 -4.60974" scale="0.05294 0.0393 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="0.11748 2.86884 -4.60974" scale="0.0224 0.02187 1"></a-entity>
-                    <a-entity material="" geometry="primitive: circle" position="0.11658 2.86908 -4.6216" scale="0.04744 0.04808 1"></a-entity>
-                    <a-entity geometry="primitive: sphere" position="0 2.85877 -5.01405" scale="0.3715 0.36888 0.36818" material="color: #473838"></a-entity>
-                </a-entity>
-            </a-entity>
-
-
-            <!--Player's defender-->
-
-            <a-entity id="defender" position="10.46266 -0.38769 8.85094" rotation="0 180 0">
-                <a-sphere position="0 2.82552 -5" radius="1.25" color="#EF2D5E" scale="0.29324 0.31295 0.30183" material="color: #f47192"></a-sphere>
-                <a-entity geometry="" scale="0.69423 1.1607 0.67422" position="0 1.86439 -4.98104" material="color: #fbff1f"></a-entity>
-                <a-entity id="arms">
-                    <a-entity id="left-arm-container">
-                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604" position="0.52187 1.57261 -4.94792" rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192" id="left-arm"></a-entity>
-                        <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="0.4166 2.03602 -4.95321" rotation="0 0 16.735524237976218" material="color: #fbff1f" id="left-hand"></a-entity>
-                    </a-entity>
-                    <a-entity id="righ-arm-container">
-                        <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604" position="-0.41678 2.03602 -4.95141" rotation="0 0 -16.735524237976218" material="color: #fbff1f" id="righ-arm"></a-entity>
-                        <a-entity geometry="primitive: cylinder" scale="0.14814 0.31569 0.1604" position="-0.54775 1.59503 -4.95141" rotation="0 0 -16.735524237976218" material="color: #f47192" id="right-hand"></a-entity>
-                    </a-entity>
-                </a-entity>
-
-                <a-entity id="legs">
-                    <a-entity id="left-leg-container">
-                        <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="0.2033 0.91512 -4.95549" material="color: #1d5aaa" rotation="0 0 5.793176266567754" id="left-leg"></a-entity>
-                        <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="0.23907 0.50003 -4.91935" material="color: #c07d30" id="left-foot"></a-entity>
-                    </a-entity>
-                    <a-entity id="right-leg-container">
-                        <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133" position="-0.16548 0.90416 -4.95549" material="color: #1d5aaa" rotation="0 0 -6.061320514688979" id="right-leg"></a-entity>
-                        <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949" position="-0.20162 0.49804 -4.91935" material="color: #c07d30" id="right-foot"></a-entity>
-                    </a-entity>
-                </a-entity>
-
-                <a-entity id="head">
-                    <a-entity material="" geometry="primitive: circle" position="-0.12191 2.87862 -4.62269" scale="0.04744 0.04808 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="-0.12209 2.87355 -4.60974" scale="0.0224 0.02187 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="-0.01273 2.68314 -4.60974" scale="0.05294 0.0393 1"></a-entity>
-                    <a-entity material="color: #000" geometry="primitive: circle" position="0.11748 2.86884 -4.60974" scale="0.0224 0.02187 1"></a-entity>
-                    <a-entity material="" geometry="primitive: circle" position="0.11658 2.86908 -4.6216" scale="0.04744 0.04808 1"></a-entity>
-                    <a-entity geometry="primitive: sphere" position="0.00199 2.85877 -5.03553" scale="0.3715 0.37942 0.40318" material="color: #473838"></a-entity>
+                <a-entity id="righ-arm-container"
+                    animation__dribling__rotation="dir: alternate; from: 2.5 -5 15; loop: true; property: rotation; to: 0 15 -25"
+                    animation__dribling="dir: alternate; dur: 600; from: 2.5 -5 15; loop: true; property: rotation; to: 0 15 -25">
+                    <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604"
+                        position="-0.41678 2.03602 -4.95141" rotation="0 0 -16.735524237976218"
+                        material="color: #b01c11" id="righ-arm"></a-entity>
+                    <a-entity geometry="primitive: cylinder" scale="0.14814 0.31569 0.1604"
+                        position="-0.54775 1.59503 -4.95141" rotation="0 0 -16.735524237976218"
+                        material="color: #f47192" id="right-hand"></a-entity>
+                    <a-entity id="ball" geometry="primitive: sphere" material="color: #dd932c"
+                        position="-1 0.9666720856341566 -4.95141" scale="0.37546 0.38678 0.36752"
+                        animation__ball="dir: alternate; from: -1.0 1.1 -4.95141; loop: true; property: position; to: -1.0 0.5 -4.95141"></a-entity>
                 </a-entity>
             </a-entity>
 
-                <a-entity id="basket">
-                <a-entity geometry="" position="0 3 14.8433" scale="1 8.32992 1" material="color: #121111; emissive: #121111"></a-entity>
-                <a-entity geometry="" position="0 6.89122 13.54681" scale="1 4 1" rotation="-45 0 0" material="color: #121111"></a-entity><a-entity geometry="" position="0 8.17373 11.72847" scale="1 1.5 1" rotation="-90 0 0" material="color: #121111"></a-entity>
-                <a-entity geometry="" position="0 8.17373 10.90984" scale="5 0.25 3.5" rotation="-90 0 0" material=""></a-entity><a-entity geometry="" position="0 7.75859 10.87728" scale="1.85 0.25 1.5" rotation="-90 0 0" material="color: #000"></a-entity>
-                <a-entity geometry="" position="0 7.75859 10.83259" scale="1.5 0.25 1.2" rotation="-90 0 0" material="color: #fff"></a-entity><a-entity></a-entity>
-                <a-entity position="0 7.07043 9.77759" geometry="primitive: sphere" scale="1.05951 -0.10542 1.08409" material="color: #e0991f"></a-entity>
-                <a-entity position="0 7.14596 9.77759" geometry="primitive: sphere" scale="0.8 -0.0377 0.8" material="color: #fff"></a-entity>
-                <a-entity geometry="primitive: cone" position="-0.01719 6.65548 9.71017" rotation="0 179.9998479605043 179.9998479605043" material=""></a-entity>
+            <a-entity id="legs">
+                <a-entity id="left-leg-container" animation=""
+                    animation__left__walk="dir: alternate; dur: 500; from: 0 0 -0.15; loop: true; property: position; to: 0 0 0.15">
+                    <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133"
+                        position="0.2033 0.91512 -4.95549" material="color: #1d5aaa" rotation="0 0 5.793176266567754"
+                        id="left-leg"></a-entity>
+                    <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949"
+                        position="0.23907 0.50003 -4.91935" material="color: #5d4b4b" id="left-foot"></a-entity>
+                </a-entity>
+                <a-entity id="right-leg-container" animation=""
+                    animation__right__walk="dir: alternate; dur: 500; from: 0 0 0.15; loop: true; property: position; to: 0 0 -0.15">
+                    <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133"
+                        position="-0.16548 0.90416 -4.95549" material="color: #1d5aaa" rotation="0 0 -6.061320514688979"
+                        id="right-leg"></a-entity>
+                    <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949"
+                        position="-0.20162 0.49804 -4.91935" material="color: #5d4b4b" id="right-foot"></a-entity>
+                </a-entity>
             </a-entity>
-                <a-plane rotation="-90 0 0" width="50" height="50" color="#a04e22"></a-plane>
-            <a-sky color="#89e0ec" id="cielo" src="#mi-cielo"></a-sky>
-        <a-entity geometry="primitive: sphere" material="" scale="15 0.01625 15" position="0 0.00698 15.19812"></a-entity><a-entity geometry="primitive: sphere" material="color: #a04e22" scale="14 0 14" position="-0.10964 0.05 14.85566"></a-entity><a-entity geometry="" position="0 0.05 22.17618" scale="49.9155 0.1 15.55191" material="color: #a04e22"></a-entity>
+
+            <a-entity id="head">
+                <a-entity material="" geometry="primitive: circle" position="-0.12191 2.87862 -4.62269"
+                    scale="0.04744 0.04808 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="-0.12209 2.87355 -4.60974"
+                    scale="0.0224 0.02187 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="-0.01273 2.68314 -4.60974"
+                    scale="0.05294 0.0393 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="0.11748 2.86884 -4.60974"
+                    scale="0.0224 0.02187 1"></a-entity>
+                <a-entity material="" geometry="primitive: circle" position="0.11658 2.86908 -4.6216"
+                    scale="0.04744 0.04808 1"></a-entity>
+                <a-entity geometry="primitive: sphere" position="0 2.85877 -5.01405" scale="0.3715 0.36888 0.36818"
+                    material="color: #473838"></a-entity>
+            </a-entity>
+        </a-entity>
+
+
+        <!--Player's defender-->
+
+        <a-entity id="defender" position="10.46266 -0.38769 8.85094" rotation="0 180 0">
+            <a-sphere position="0 2.82552 -5" radius="1.25" color="#EF2D5E" scale="0.29324 0.31295 0.30183"
+                material="color: #f47192"></a-sphere>
+            <a-entity geometry="" scale="0.69423 1.1607 0.67422" position="0 1.86439 -4.98104"
+                material="color: #fbff1f"></a-entity>
+            <a-entity id="arms">
+                <a-entity id="left-arm-container">
+                    <a-entity geometry="primitive: cylinder" scale="0.14814 0.2801 0.1604"
+                        position="0.52187 1.57261 -4.94792"
+                        rotation="-0.8794902155258137 -0.3271589010197001 12.803314889993375" material="color: #f47192"
+                        id="left-arm"></a-entity>
+                    <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604"
+                        position="0.4166 2.03602 -4.95321" rotation="0 0 16.735524237976218" material="color: #fbff1f"
+                        id="left-hand"></a-entity>
+                </a-entity>
+                <a-entity id="righ-arm-container">
+                    <a-entity class="arm" geometry="primitive: cylinder" scale="0.14814 0.68472 0.1604"
+                        position="-0.41678 2.03602 -4.95141" rotation="0 0 -16.735524237976218"
+                        material="color: #fbff1f" id="righ-arm"></a-entity>
+                    <a-entity geometry="primitive: cylinder" scale="0.14814 0.31569 0.1604"
+                        position="-0.54775 1.59503 -4.95141" rotation="0 0 -16.735524237976218"
+                        material="color: #f47192" id="right-hand"></a-entity>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="legs">
+                <a-entity id="left-leg-container">
+                    <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133"
+                        position="0.2033 0.91512 -4.95549" material="color: #1d5aaa" rotation="0 0 5.793176266567754"
+                        id="left-leg"></a-entity>
+                    <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949"
+                        position="0.23907 0.50003 -4.91935" material="color: #c07d30" id="left-foot"></a-entity>
+                </a-entity>
+                <a-entity id="right-leg-container">
+                    <a-entity geometry="primitive: cylinder" scale="0.16689 0.78289 0.21133"
+                        position="-0.16548 0.90416 -4.95549" material="color: #1d5aaa" rotation="0 0 -6.061320514688979"
+                        id="right-leg"></a-entity>
+                    <a-entity geometry="primitive: sphere" scale="0.17204 0.10348 0.25949"
+                        position="-0.20162 0.49804 -4.91935" material="color: #c07d30" id="right-foot"></a-entity>
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="head">
+                <a-entity material="" geometry="primitive: circle" position="-0.12191 2.87862 -4.62269"
+                    scale="0.04744 0.04808 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="-0.12209 2.87355 -4.60974"
+                    scale="0.0224 0.02187 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="-0.01273 2.68314 -4.60974"
+                    scale="0.05294 0.0393 1"></a-entity>
+                <a-entity material="color: #000" geometry="primitive: circle" position="0.11748 2.86884 -4.60974"
+                    scale="0.0224 0.02187 1"></a-entity>
+                <a-entity material="" geometry="primitive: circle" position="0.11658 2.86908 -4.6216"
+                    scale="0.04744 0.04808 1"></a-entity>
+                <a-entity geometry="primitive: sphere" position="0.00199 2.85877 -5.03553"
+                    scale="0.3715 0.37942 0.40318" material="color: #473838"></a-entity>
+            </a-entity>
+        </a-entity>
+
+        <a-entity id="basket">
+            <a-entity geometry="" position="0 3 14.8433" scale="1 8.32992 1"
+                material="color: #121111; emissive: #121111"></a-entity>
+            <a-entity geometry="" position="0 6.89122 13.54681" scale="1 4 1" rotation="-45 0 0"
+                material="color: #121111"></a-entity><a-entity geometry="" position="0 8.17373 11.72847" scale="1 1.5 1"
+                rotation="-90 0 0" material="color: #121111"></a-entity>
+            <a-entity geometry="" position="0 8.17373 10.90984" scale="5 0.25 3.5" rotation="-90 0 0"
+                material=""></a-entity><a-entity geometry="" position="0 7.75859 10.87728" scale="1.85 0.25 1.5"
+                rotation="-90 0 0" material="color: #000"></a-entity>
+            <a-entity geometry="" position="0 7.75859 10.83259" scale="1.5 0.25 1.2" rotation="-90 0 0"
+                material="color: #fff"></a-entity><a-entity></a-entity>
+            <a-entity position="0 7.07043 9.77759" geometry="primitive: sphere" scale="1.05951 -0.10542 1.08409"
+                material="color: #e0991f"></a-entity>
+            <a-entity position="0 7.14596 9.77759" geometry="primitive: sphere" scale="0.8 -0.0377 0.8"
+                material="color: #fff"></a-entity>
+            <a-entity geometry="primitive: cone" position="-0.01719 6.65548 9.71017"
+                rotation="0 179.9998479605043 179.9998479605043" material=""></a-entity>
+        </a-entity>
+
+        <!--Tree-->
+        <a-entity gltf-model="#arbol" position="-20 0-5"></a-entity>
+
+        <a-plane rotation="-90 0 0" width="50" height="50" color="#a04e22"></a-plane>
+        <a-sky color="#89e0ec" id="cielo" src="#mi-cielo"></a-sky>
+        <a-entity geometry="primitive: sphere" material="" scale="15 0.01625 15"
+            position="0 0.00698 15.19812"></a-entity><a-entity geometry="primitive: sphere" material="color: #a04e22"
+            scale="14 0 14" position="-0.10964 0.05 14.85566"></a-entity><a-entity geometry=""
+            position="0 0.05 22.17618" scale="49.9155 0.1 15.55191" material="color: #a04e22"></a-entity>
     </a-scene>
-        <script src="js/basketball-play.js"></script>
-    </body>
+    <script src="js/basketball-play.js"></script>
+</body>
+
 </html>
